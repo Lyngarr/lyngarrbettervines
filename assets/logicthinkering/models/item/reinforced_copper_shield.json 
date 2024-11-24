@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/shield",
+  "textures": {
+    "particle": "logicthinkering:item/reinforced_copper_shield_base",
+    "base": "logicthinkering:item/reinforced_copper_shield_base"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "logicthinkering:item/reinforced_copper_shield_blocking"
+    }
+  ]
+}
