@@ -15,6 +15,7 @@ public class ExampleMod implements ModInitializer {
 	public void onInitialize() {
 
 		Itens.Inicializa();
+		Blocos.Inicializa();
 		LOGGER.info("OK");
 	}
 }
