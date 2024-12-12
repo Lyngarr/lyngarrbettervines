@@ -1,38 +1,38 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "witherstormmod",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Cracker's Wither Storm",
+	"description": "This mod adds the Wither Storm from Minecraft: Story Mode, and is designed to be mainly a survival challenge mod in where the player(s) try to defeat the Wither Storm while running, hiding, and gearing up as they go along. No prior knowledge of Minecraft: Story Mode is required! One of the goals of this mod is to abstract the Wither Storm from the game as much as possible, so anyone can play.",
 	"authors": [
-		"Me!"
+		"Wowlikon",
+		"NotTryHard"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/wowlikon/crackers-wither-storm-fabric"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"license": "MIT",
+	"icon": "assets/witherstormmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"nonamecrackers2.witherstormmod.CrackersWitherStorm"
 		],
 		"client": [
-			"com.example.ExampleModClient"
+			"nonamecrackers2.witherstormmod.CrackersWitherStormClient"
+		],
+		"fabric-datagen": [
+			"nonamecrackers2.witherstormmod.CrackersWitherStormDataGenerator"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
-		{
-			"config": "modid.client.mixins.json",
-			"environment": "client"
-		}
+		"witherstormmod.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.10",
-		"minecraft": "~1.20.6",
-		"java": ">=21",
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
 		"fabric-api": "*"
 	},
 	"suggests": {
