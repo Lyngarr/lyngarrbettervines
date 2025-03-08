@@ -1,0 +1,45 @@
+package com.example.cpsboost;
+
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.util.ActionResult;
+
+@Environment(EnvType.CLIENT)
+public class CPSBoostMod implements ClientModInitializer {
+    private static final double BOOST_PERCENTAGE = 0.15; // 15% faster
+    private int attackCooldownTicks = 0;
+    private int useCooldownTicks = 0;
+
+    @Override
+    public void onInitializeClient() {
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            ClientPlayerEntity player = MinecraftClient.getInstance().player;
+            if (player == null) return;
+
+            if (attackCooldownTicks > 0) attackCooldownTicks--;
+            if (useCooldownTicks > 0) useCooldownTicks--;
+        });
+    }
+
+    public static ActionResult onAttack() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null) return ActionResult.PASS;
+
+        int reducedCooldown = (int) Math.ceil(client.player.getAttackCooldownProgress(0.5f) * (1.0 - BOOST_PERCENTAGE));
+        client.player.resetLastAttackedTicks(reducedCooldown);
+        return ActionResult.PASS;
+    }
+
+    public static ActionResult onUse() {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null) return ActionResult.PASS;
+
+        int reducedCooldown = (int) Math.ceil(client.player.getItemUseTimeLeft() * (1.0 - BOOST_PERCENTAGE));
+        client.player.setItemUseTimeLeft(reducedCooldown);
+        return ActionResult.PASS;
+    }
+}
