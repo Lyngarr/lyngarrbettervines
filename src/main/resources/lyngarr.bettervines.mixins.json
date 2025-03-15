@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "com.example.mixin",
+	"package": "com.lyngarr.bettervines.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"VineBlockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
